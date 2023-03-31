@@ -35,14 +35,15 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @restaurant.update(restaurant_params)
-        format.html { redirect_to restaurant_url(@restaurant), notice: "Restaurant was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.update(restaurant_params)
+      UpdateRestaurantStatusJob.set(wait: 5.minutes).perform_later(@restaurant.id)
+      redirect_to @restaurant, notice: 'Restaurant was successfully updated.'
+    else
+      render :edit
     end
   end
+  
 
   def destroy
     @restaurant.destroy
