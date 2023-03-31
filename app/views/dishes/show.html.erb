@@ -1,6 +1,17 @@
-<p style="color: green"><%= notice %></p>
+ <p>
+    <strong>Name:</strong>
+    <%= @dish.name %>
+  </p>
 
-<%= render @dish %>
+  <p>
+    <strong>Price:</strong>
+    <%= @dish.price %>
+  </p>
+
+  <p>
+    <strong>Restaurant:</strong>
+    <%= @dish.restaurant.name %>
+  </p>
 <h2>Reviews:</h2>
 <% if @dish.reviews.any? %>
   <% @dish.reviews.each do |review| %>

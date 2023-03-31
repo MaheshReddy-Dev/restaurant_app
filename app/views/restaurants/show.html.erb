@@ -1,7 +1,21 @@
-<p style="color: green"><%= notice %></p>
+  <p>
+    <strong>Name:</strong>
+    <%= @restaurant.name %>
+  </p>
 
-<%= render @restaurant %>
+  <p>
+    <strong>Address:</strong>
+    <%= @restaurant.address %>
+  </p>
 
+ <p>
+    <strong>Status:</strong>
+    <% if @restaurant.status? %>
+            Open
+          <% else %>
+            Closed
+      <% end %>
+  </p>
 <h2>Dishes:</h2>
 <% if @dishes.any? %>
   <% @dishes.each do |dish| %>

@@ -2,7 +2,6 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
-  # GET /restaurants or /restaurants.json
   def index
     if params[:dish_id].present?
       @restaurants = Restaurant.joins(:dishes).where(dishes: { id: params[:dish_id] }).distinct
@@ -11,57 +10,45 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  # GET /restaurants/1 or /restaurants/1.json
   def show
     @restaurant = Restaurant.find(params[:id])
     @dishes = @restaurant.dishes
   end
   
-
-  # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
   end
 
-  # GET /restaurants/1/edit
   def edit
   end
 
-  # POST /restaurants or /restaurants.json
   def create
     @restaurant = Restaurant.new(restaurant_params)
 
     respond_to do |format|
       if @restaurant.save
         format.html { redirect_to restaurant_url(@restaurant), notice: "Restaurant was successfully created." }
-        format.json { render :show, status: :created, location: @restaurant }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /restaurants/1 or /restaurants/1.json
   def update
     respond_to do |format|
       if @restaurant.update(restaurant_params)
-        format.html { redirect_to root_path, notice: "Restaurant was successfully updated." }
-        format.json { render :show, status: :ok, location: @restaurant }
+        format.html { redirect_to restaurant_url(@restaurant), notice: "Restaurant was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /restaurants/1 or /restaurants/1.json
   def destroy
     @restaurant.destroy
 
     respond_to do |format|
       format.html { redirect_to restaurants_url, notice: "Restaurant was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
