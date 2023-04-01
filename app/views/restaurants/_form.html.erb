@@ -11,13 +11,12 @@
     <%= form.label :address, style: "display: block" %>
     <%= form.text_field :address %>
   </div>
-  
-  <p><%=form.label "status:"%>
-    <%=form.radio_button(:status, "true")%>
-    <%=form.label(:status, "open")%>
-    <%=form.radio_button(:status, "false")%>
-    <%=form.label(:status, "closed")%></p>
-  <div>
+      <p><%=form.label "status:"%>
+        <%=form.radio_button(:status, "true")%>
+        <%=form.label(:status, "open")%>
+        <%=form.radio_button(:status, "false")%>
+        <%=form.label(:status, "closed")%></p>
+      <div>
     <%= form.submit %>
   </div>
 <% end %>
