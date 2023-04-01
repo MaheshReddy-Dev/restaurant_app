@@ -14,6 +14,6 @@ class Restaurant < ApplicationRecord
     end
     
     def self.set_status_with_delay(id, status)
-        find(id).delay(run_at: 1.minutes.from_now).set_status(status)
+        find(id).delay(run_at: 5.minutes.from_now).set_status(status)
     end
 end
