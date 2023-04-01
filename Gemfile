@@ -28,11 +28,13 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 5.0.6"
 
 gem 'devise'
 
 gem 'sidekiq'
+
+
+gem 'delayed_job_active_record'
 
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -46,6 +48,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"

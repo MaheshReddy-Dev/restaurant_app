@@ -36,13 +36,13 @@ class RestaurantsController < ApplicationController
 
   def update
     @restaurant = Restaurant.find(params[:id])
-    if @restaurant.update(restaurant_params)
-      UpdateRestaurantStatusJob.set(wait: 5.minutes).perform_later(@restaurant.id)
-      redirect_to @restaurant, notice: 'Restaurant was successfully updated.'
+    if @restaurant.set_status_with_delay(restaurant_params[:status])
+      redirect_to @restaurant, notice: 'Restaurant status will be updated in 5 minutes.'
     else
       render :edit
     end
   end
+  
   
 
   def destroy
@@ -52,6 +52,9 @@ class RestaurantsController < ApplicationController
       format.html { redirect_to restaurants_url, notice: "Restaurant was successfully destroyed." }
     end
   end
+
+
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
