@@ -35,4 +35,5 @@
   <%= link_to 'Destroy', @dish,data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %>
   </div>
 <% end %>
-  <%= link_to "Back to restaurants", restaurants_path %>
+  <%= link_to "Back to restaurants", restaurants_path %> or 
+    <%= link_to "Back to restaurant", @dish.restaurant %> 

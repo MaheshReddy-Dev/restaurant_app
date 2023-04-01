@@ -1,7 +1,6 @@
 <%= form_with(model: restaurant) do |form| %>
 <%=render 'shared/errors', obj:@restaurant%>
 
-
   <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
